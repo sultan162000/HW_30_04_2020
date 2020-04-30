@@ -21,20 +21,16 @@ namespace HW_30_04
 
         private void Initialization(int windowWidth, int windowHeight)
         {
-            //получаем высоту окна
             _heightWindow = windowHeight;
 
-            int h1 = _heightWindow / 2; //половина высоты
-            int h2 = _heightWindow / 4; //четверть высоты
+            int h1 = _heightWindow / 2; 
+            int h2 = _heightWindow / 4; 
 
-            //ширина окна
             _widthWindow = windowWidth;
 
-            //два массива размером в ширину окна
             _widthPosSimple = new int[_widthWindow];
             _widthPosAddition = new int[_widthWindow];
 
-            //заполнение массивов случайными числами
             for (int i = 0; i < _widthWindow; i++)
             {
                 _widthPosSimple[i] = Simvol.r.Next(_heightWindow);
@@ -44,6 +40,48 @@ namespace HW_30_04
                 int max = h1 * k;
                 _widthPosAddition[i] = Simvol.r.Next(min, max);
             }
+        }
+        public void ShowSimvol()
+        {
+            for (int i = 0; i < _widthWindow; i++)
+            {
+                if (_widthPosSimple[i] < 10)
+                {
+                    
+                    _sign.ShowDarkGreen(i, _widthPosSimple[i]);
+                }
+                else if (_widthPosSimple[i] < 25)
+                {
+                    
+                    _sign.ShowGreen(i, _widthPosSimple[i]);
+                }
+                else
+                {
+                    
+                    _sign.ShowWhite(i, _widthPosSimple[i]);
+                }
+
+                _widthPosSimple[i] = CheckNextHeightPosition(_widthPosSimple[i] + 1, _heightWindow);
+
+                int next = _widthPosSimple[i] - _widthPosAddition[i];
+                int nextPos = CheckNextHeightPosition(next, _heightWindow);
+                _sign.ShowSpace(i, nextPos);
+            }
+        }
+
+        private int CheckNextHeightPosition(int next, int height)
+        {
+            next = next % height;
+
+            if (next < 0)
+            {
+                return next + height;
+            }
+            else
+            {
+                return next;
+            }
+
         }
 
 
