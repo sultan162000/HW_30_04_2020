@@ -45,12 +45,12 @@ namespace HW_30_04
         {
             for (int i = 0; i < _widthWindow; i++)
             {
-                if (_widthPosSimple[i] < 10)
+                if (_widthPosSimple[i] < 1)
                 {
                     
-                    _sign.ShowDarkGreen(i, _widthPosSimple[i]);
+                    _sign.ShowWhite(i, _widthPosSimple[i]);
                 }
-                else if (_widthPosSimple[i] < 25)
+                else if (_widthPosSimple[i] < 2)
                 {
                     
                     _sign.ShowGreen(i, _widthPosSimple[i]);
@@ -58,7 +58,7 @@ namespace HW_30_04
                 else
                 {
                     
-                    _sign.ShowWhite(i, _widthPosSimple[i]);
+                    _sign.ShowDarkGreen(i, _widthPosSimple[i]);
                 }
 
                 _widthPosSimple[i] = CheckNextHeightPosition(_widthPosSimple[i] + 1, _heightWindow);
