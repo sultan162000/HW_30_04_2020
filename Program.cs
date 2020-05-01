@@ -1,23 +1,21 @@
 ﻿using System;
-
-namespace HW_30_04
+using System.Threading;
+ 
+namespace Task_2
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            int second = 0;
-            showTheSimv show = new showTheSimv();
-            Console.Clear();
-            Console.CursorVisible = false;
-            while (true)
+            Console.SetWindowSize(70, 42);
+ 
+            Matrix instance;
+ 
+            for (int i = 0; i < 20; i++)
             {
-                DateTime time = DateTime.Now;
-                show.ShowSimvol();
-                second = 150 - (int)((TimeSpan)(DateTime.Now - time)).TotalMilliseconds;
-                if (second > 0) System.Threading.Thread.Sleep(second);
+                instance = new Matrix(i * 3, true);
+                new Thread(instance.Shower).Start();
             }
-            
         }
     }
 }
